@@ -41,7 +41,7 @@ const Hero = () => {
           
           <Link href="/search">
             <motion.a
-              className="inline-block bg-leader-red text-white py-3 px-8 font-medium hover:bg-leader-red/90 transition-colors"
+              className="inline-block bg-[#C10D28] text-white py-3 px-8 font-medium hover:bg-opacity-90 rounded-sm transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0 }}
