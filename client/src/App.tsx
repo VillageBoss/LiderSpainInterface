@@ -20,26 +20,29 @@ function App() {
   const { webApp } = useTelegram();
   const [location, setLocation] = useLocation();
 
+  // Skip the loading screen completely for development
+  const appIsLoading = false;
+
   useEffect(() => {
-    // Set up Telegram back button handler
-    if (webApp) {
-      webApp.BackButton.onClick(() => {
-        setLocation("/");
-      });
+    // Set up Telegram back button handler - disabled for development
+    // if (webApp) {
+    //   webApp.BackButton.onClick(() => {
+    //     setLocation("/");
+    //   });
       
-      // Set back button visibility based on location
-      if (location === "/") {
-        webApp.BackButton.hide();
-      } else {
-        webApp.BackButton.show();
-      }
-    }
+    //   // Set back button visibility based on location
+    //   if (location === "/") {
+    //     webApp.BackButton.hide();
+    //   } else {
+    //     webApp.BackButton.show();
+    //   }
+    // }
   }, [webApp, setLocation, location]);
 
   return (
     <div className="relative min-h-screen font-montserrat text-leader-black bg-white">
-      {/* Loading Screen */}
-      {isLoading && (
+      {/* Loading Screen - Disabled for development */}
+      {appIsLoading && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white">
           <div className="loading-indicator mb-8"></div>
           <h2 className="font-playfair text-2xl font-semibold text-leader-red">LeaderSpain</h2>
@@ -53,19 +56,17 @@ function App() {
       {/* Side Menu */}
       <SideMenu isOpen={isSideMenuOpen} onClose={() => toggleSideMenu(false)} />
 
-      {/* Main Content */}
+      {/* Main Content - Always show, no loading condition */}
       <main className="pt-16 pb-20">
         <AnimatePresence mode="wait">
-          {!isLoading && (
-            <Switch location={location} key={location}>
-              <Route path="/" component={Home} />
-              <Route path="/property/:id" component={PropertyDetails} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/favorites" component={Favorites} />
-              <Route path="/search" component={Search} />
-              <Route component={NotFound} />
-            </Switch>
-          )}
+          <Switch location={location} key={location}>
+            <Route path="/" component={Home} />
+            <Route path="/property/:id" component={PropertyDetails} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/favorites" component={Favorites} />
+            <Route path="/search" component={Search} />
+            <Route component={NotFound} />
+          </Switch>
         </AnimatePresence>
       </main>
 
