@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 358 74% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --leader-red: 358 74% 45%;
+    --leader-black: 0 0% 0%;
+    --leader-gold: 46 65% 52%;
+    --leader-gray: 0 0% 96%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 358 74% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+/* Font family */
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.loading-indicator:before,
+.loading-indicator:after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid hsl(var(--leader-red));
+  width: 100%;
+  height: 100%;
+  animation: ripple 2s ease-out infinite;
+}
+
+.loading-indicator:after {
+  animation-delay: 1s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Property card hover effects */
+.property-card:hover .property-card-overlay {
+  opacity: 1;
+}
+
+/* Custom checkbox */
+.custom-checkbox:checked + label:before {
+  content: '✓';
+  color: white;
+  background: hsl(var(--leader-red));
+  border-color: hsl(var(--leader-red));
+  text-align: center;
+  line-height: 18px;
+}
+
+/* Gallery navigation indicators */
+.gallery-indicator {
+  transition: all 0.3s ease;
+}
+
+.gallery-indicator.active {
+  width: 20px;
+  background-color: hsl(var(--leader-red));
+}
+
+/* Search animation */
+.search-animation {
+  position: relative;
+}
+
+.search-animation::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: hsl(var(--leader-red));
+  transition: width 0.3s ease;
+}
+
+.search-animation:focus::after {
+  width: 100%;
+}
+
+/* Slide container for property gallery */
+.slide-container {
+  scroll-snap-type: x mandatory;
+}
+
+.slide {
+  scroll-snap-align: start;
+}
