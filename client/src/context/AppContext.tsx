@@ -45,14 +45,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [userId, setUserId] = useState<number | null>(1); // Start with dummy user ID
   const [favorites, setFavorites] = useState<number[]>([]);
   
-  // Initialize app with loading state
+  // Force the loading state to be false immediately for testing
   useEffect(() => {
-    // Simulate loading for a better UX
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
+    // Set loading to false immediately to make the app visible
+    setIsLoading(false);
   }, []);
 
   const toggleLoading = (value: boolean) => setIsLoading(value);
